@@ -1,0 +1,21 @@
+{
+  "name": "sdf-to-svg",
+  "version": "1.0.0",
+  "description": "Render SDF files to SVGs",
+  "main": "index.js",
+  "dependencies": {
+    "d3": "^4.2.1",
+    "d3-scale": "^1.0.3",
+    "httpreq": "^0.4.22",
+    "jsdom": "^9.4.2",
+    "lodash": "^4.16.2",
+    "moljs": "^1.0.0",
+    "sdf-parser": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Herb Susmann",
+  "license": "Apache"
+}
