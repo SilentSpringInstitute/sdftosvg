@@ -5,7 +5,7 @@
 This is a javascript package for rendering SDF chemical structure files as SVGs.
 
 ## Usage
-```
+```js
 var renderer = require('sdftosvg');
 
 // Convert SDF as string to SVG
