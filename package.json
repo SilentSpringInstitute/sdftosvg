@@ -1,6 +1,6 @@
 {
   "name": "sdftosvg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Render SDF files to SVGs",
   "main": "index.js",
   "dependencies": {
