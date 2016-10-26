@@ -1,5 +1,5 @@
 {
-  "name": "sdf-to-svg",
+  "name": "sdftosvg",
   "version": "1.0.0",
   "description": "Render SDF files to SVGs",
   "main": "index.js",
