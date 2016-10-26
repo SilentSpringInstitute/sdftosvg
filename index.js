@@ -1,9 +1,10 @@
-var render = require('./renderer');
 var fs = require('fs');
 var parseSdf = require('sdf-parser');
-var parseMol = require('./mol.js');
 var jsdom = require('jsdom');
 var d3 = require('d3');
+
+var render = require('./src/renderer');
+var parseMol = require('./src/mol.js');
 
 module.exports.renderSdfToSvg = function(sdfRaw, options, callback) {
   var sdf = parseSdf(sdfRaw);

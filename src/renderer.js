@@ -70,12 +70,14 @@ var render = function(window, molecule, options) {
     .attr('width', options.width)
     .attr('height', options.height);
 
+  /*
   svgMain.append('text')
     .text(molecule.header.name)
     .attr('transform', translate(options.width / 2, options.height))
     .style('stroke', 'black')
     .style('font-size', '20pt')
     .style('text-anchor', 'middle').style('baseline', 'bottom');
+    */
 
   var svg = svgMain
     .append('g')
@@ -85,7 +87,7 @@ var render = function(window, molecule, options) {
     return molecule.connections.atoms[d3.select(d.parentNode).datum()[which] - 1];
   };
 
-  getLine = function(that) {
+  var getLine = function(that) {
     var line = {
       x1: x(parentAtom(that, 'first').x),
       x2: x(parentAtom(that, 'second').x),
@@ -108,7 +110,7 @@ var render = function(window, molecule, options) {
     .enter()
     .append('g')
     .selectAll('line')
-    .data(function(d) { return _.range(1, d.type) })
+    .data(function(d) { return _.range(1, d.type + 1) })
     .enter();
 
   var bondTransform = function(d) {
@@ -181,8 +183,7 @@ var render = function(window, molecule, options) {
     .style('stroke', function(d) {
       return options.colors[parentAtom(this, 'first').type];
     }).style('stroke-width', 3).style('stroke-linecap', function(d) {
-      var bond;
-      bond = d3.select(this.parentNode).datum();
+      var bond = d3.select(this.parentNode).datum();
       if (bond.aromatic && d === 1) {
         return "round";
       }

@@ -58,8 +58,7 @@ var parseConnections = function(lines) {
 
 var parsePubChemBondAnnotations = function(lines) {
   return lines.map(function(line) {
-    var elements;
-    elements = line.replace(/\s+/g, ' ').split(" ");
+    var elements = line.replace(/\s+/g, ' ').split(" ");
     return {
       first: parseInt(elements[0]),
       second: parseInt(elements[1]),
@@ -69,25 +68,20 @@ var parsePubChemBondAnnotations = function(lines) {
 };
 
 var applyPubChemBondAnnotations = function(molecule, annotations) {
-  var annotation, bond, _i, _len, _ref, _results;
-  _ref = molecule.connections.bonds;
-  _results = [];
-  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-    bond = _ref[_i];
-    annotation = _.filter(annotations, function(x) {
+  for (var i = 0; i < molecule.connections.bonds.length; i++) {
+    var bond = molecule.connections.bonds[i];
+
+    // Find any annotations for this bond
+    var annotation = _.filter(annotations, function(x) {
       return (x.first === bond.first && x.second === bond.second) || (x.first === bond.second && x.second === bond.first);
     });
+
     if (annotation.length > 0) {
       if (_.map(annotation, 'type').indexOf(BOND_AROMATIC) >= 0) {
-        _results.push(bond.aromatic = true);
-      } else {
-        _results.push(void 0);
+        bond.aromatic = true;
       }
-    } else {
-      _results.push(void 0);
     }
   }
-  return _results;
 };
 
 var computeAromaticCenters = function(molecule) {
