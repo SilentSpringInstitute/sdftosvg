@@ -78,8 +78,8 @@ The options object can contain the following keys:
   ```js
   {
     "C": "red",
-    "O", "blue",
-    "H", "green"
+    "O": "blue",
+    "H": "green"
   }
   ```
 
