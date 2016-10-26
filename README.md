@@ -73,7 +73,7 @@ The options object can contain the following keys:
 - `atomRadius`: radius of atom circles
 - `bondStrokeWidth`: stroke width of bond lines
 - `backgroundColor`: background color
-- `colors`: object mapping chemical abbreviations to colors, for example:
+- `colors`: object mapping chemical abbreviations to colors. By default, sdftosvg uses the [JMol color scheme](http://jmol.sourceforge.net/jscolors/). For example, to override:
 
   ```js
   {
