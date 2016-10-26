@@ -9,11 +9,13 @@ program
   .usage('[options] <input> <output>')
   .option('-w, --width <n>', 'Output width', parseInt)
   .option('-h, --height <n>', 'Output height', parseInt)
+  .option('-b, --background <background>', 'Background color', /^#?[a-z0-9]+$/i, '#FFFFFF')
   .action(function(input, output, options) {
     inputFile = input;
     outputFile = output;
     width = options.width || 500;
     height = options.height || 500;
+    backgroundColor = options.background || '#FFFFFF';
   })
   .parse(process.argv);
 
@@ -32,7 +34,9 @@ if(!fs.existsSync(inputFile)) {
   process.exit(1);
 }
 
+console.log(backgroundColor);
 renderer.renderSdfToSvgFile(inputFile, outputFile, {
   width: width,
-  height: height 
+  height: height,
+  backgroundColor: backgroundColor
 });

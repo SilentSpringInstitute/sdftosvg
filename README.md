@@ -19,14 +19,16 @@ $ sdftosvg ./input.sdf ./output.svg
 
 ## Command Line Arguments
 ```
-Usage: convert [options] <input> <output>
+  Usage: convert [options] <input> <output>
 
   Options:
 
-    -h, --help        output usage information
-    -V, --version     output the version number
-    -w, --width <n>   Output width
-    -h, --height <n>  Output height
+    -h, --help                     output usage information
+    -V, --version                  output the version number
+    -w, --width <n>                Output width
+    -h, --height <n>               Output height
+    -b, --background <background>  Background color
+
 ```
 
 ## NPM Package Usage
@@ -70,6 +72,7 @@ The options object can contain the following keys:
 - `height`: output height, in pixels
 - `atomRadius`: radius of atom circles
 - `bondStrokeWidth`: stroke width of bond lines
+- `backgroundColor`: background color
 - `colors`: object mapping chemical abbreviations to colors, for example:
 
   ```js

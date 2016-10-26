@@ -143,6 +143,7 @@ var render = function(window, molecule, options) {
       "Hs": "#E6002E",
       "Mt": "#EB0026"
     },
+    backgroundColor: '#FFFFFF',
     atomRadius: 8,
     bondStrokeWidth: 3
   };
@@ -192,6 +193,11 @@ var render = function(window, molecule, options) {
     .style('font-size', '20pt')
     .style('text-anchor', 'middle').style('baseline', 'bottom');
     */
+
+  svgMain.append('rect')
+    .attr('width', options.width)
+    .attr('height', options.height)
+    .style('fill', options.backgroundColor);
 
   var svg = svgMain
     .append('g')
