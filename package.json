@@ -23,5 +23,6 @@
   },
   "bin": "./src/convert.js",
   "author": "Herb Susmann",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "repository": "silentspringinstitute/sdftosvg"
 }
