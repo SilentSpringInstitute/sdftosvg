@@ -5,9 +5,9 @@
 This is a javascript package for rendering SDF chemical structure files as SVGs.
 
 ## Examples
-![HBCDD](https://raw.githubusercontent.com/SilentSpringInstitute/sdftosvg/master/examples/HBCDD.png)
-![Lindane](https://raw.githubusercontent.com/SilentSpringInstitute/sdftosvg/master/examples/Lind.png)
-![PFOS](https://raw.githubusercontent.com/SilentSpringInstitute/sdftosvg/master/examples/PFOS.png)
+[![HBCDD](https://raw.githubusercontent.com/SilentSpringInstitute/sdftosvg/master/examples/HBCDD.png)](https://pubchem.ncbi.nlm.nih.gov/compound/1_2_5_6_9_10-hexabromocyclododecane)
+[![Lindane](https://raw.githubusercontent.com/SilentSpringInstitute/sdftosvg/master/examples/Lind.png)](https://pubchem.ncbi.nlm.nih.gov/compound/727)
+[![PFOS](https://raw.githubusercontent.com/SilentSpringInstitute/sdftosvg/master/examples/PFOS.png)](https://pubchem.ncbi.nlm.nih.gov/compound/74483)
 
 ## Command Line Usage
 
