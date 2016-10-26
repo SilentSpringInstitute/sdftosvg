@@ -42,10 +42,24 @@ var render = function(window, molecule, options) {
       "C": "#2c3e50",
       "Br": "brown",
       "P": "#d35400"
-    }
+    },
+    atomRadius: 8,
+    bondStrokeWidth: 3
   };
 
+  var differentSize = options.width != defaultOptions.width || options.height != defaultOptions.height
+  var recalcAtomRadius = differentSize && typeof options.atomSize === 'undefined';
+  var recalcBondStrokeWidth = differentSize && options.bondStrokeWidth === 'undefined';
+
   options = _.merge(defaultOptions, options);
+
+  if(recalcAtomRadius) {
+    options.atomRadius = Math.round((8 / 500) * Math.min(options.width, options.height));
+  }
+
+  if(recalcBondStrokeWidth) {
+    options.atomRadius = Math.round((3 / 500) * Math.min(options.width, options.height));
+  }
 
   var xs = _(molecule.connections.atoms).filter(function(d) {
     return d.draw || d.type === "C";
@@ -182,7 +196,9 @@ var render = function(window, molecule, options) {
     .attr('transform', bondTransform)
     .style('stroke', function(d) {
       return options.colors[parentAtom(this, 'first').type];
-    }).style('stroke-width', 3).style('stroke-linecap', function(d) {
+    })
+    .style('stroke-width', options.bondStrokeWidth)
+    .style('stroke-linecap', function(d) {
       var bond = d3.select(this.parentNode).datum();
       if (bond.aromatic && d === 1) {
         return "round";
@@ -198,7 +214,7 @@ var render = function(window, molecule, options) {
     .attr('y1', function(d) { return getLine(this).y2; })
     .attr('y2', function(d) { return getLine(this).center.y; })
     .attr('transform', bondTransform)
-    .style('stroke-width', 3)
+    .style('stroke-width', options.bondStrokeWidth)
     .style('stroke', function(d) {
       return options.colors[parentAtom(this, 'second').type];
     });
@@ -214,7 +230,7 @@ var render = function(window, molecule, options) {
         return translate(x(d.x), y(d.y));
       })
     .append('circle')
-      .attr('r', 8)
+      .attr('r', options.atomRadius)
       .style('fill', function(d) {
         return options.colors[d.type];
       });

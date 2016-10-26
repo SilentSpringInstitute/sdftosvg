@@ -1,9 +1,10 @@
 {
   "name": "sdftosvg",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Render SDF files to SVGs",
   "main": "index.js",
   "dependencies": {
+    "commander": "^2.9.0",
     "d3": "^4.2.1",
     "d3-scale": "^1.0.3",
     "httpreq": "^0.4.22",
@@ -20,6 +21,7 @@
   "scripts": {
     "test": "make test"
   },
+  "bin": "./src/convert.js",
   "author": "Herb Susmann",
   "license": "Apache-2.0"
 }
