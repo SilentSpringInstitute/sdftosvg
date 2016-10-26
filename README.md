@@ -4,7 +4,14 @@
 
 This is a javascript package for rendering SDF chemical structure files as SVGs.
 
+## Command Line Usage
+
+```bash
+$ sdftosvg ./input.sdf ./output.svg
+```
+
 ## Usage
+
 ```js
 var renderer = require('sdftosvg');
 
