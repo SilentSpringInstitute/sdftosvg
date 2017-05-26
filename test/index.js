@@ -13,7 +13,12 @@ describe("#renderSdfToSvg", function() {
     });
   });
 
-  it("Successfully converts test.sdf to SVG", function() {
-    (function() { renderer.renderSdfToSvgFile('./test/examples/test.sdf', './test/examples/test.svg') }).should.not.throw();
+});
+
+describe("#renderSdfToSvgFile", function() {
+  it("Successfully converts test.sdf to SVG", function(done) {
+    renderer.renderSdfToSvgFile('./test/examples/test.sdf', './test/examples/test.svg', function() {
+      done();
+    });
   });
 });
