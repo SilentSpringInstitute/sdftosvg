@@ -148,11 +148,11 @@ var render = function(window, molecule, options) {
     bondStrokeWidth: 3
   };
 
+  options = _.merge(defaultOptions, options);
+
   var differentSize = options.width != defaultOptions.width || options.height != defaultOptions.height
   var recalcAtomRadius = differentSize && typeof options.atomSize === 'undefined';
   var recalcBondStrokeWidth = differentSize && options.bondStrokeWidth === 'undefined';
-
-  options = _.merge(defaultOptions, options);
 
   if(recalcAtomRadius) {
     options.atomRadius = Math.round((8 / 500) * Math.min(options.width, options.height));
@@ -182,6 +182,8 @@ var render = function(window, molecule, options) {
 
   var svgMain = d3.select(window.document).select('body')
     .append('svg')
+    .attr('xmlns', "http://www.w3.org/2000/svg")
+    .attr('version', '1.1')
     .attr('width', options.width)
     .attr('height', options.height);
 

@@ -1,5 +1,6 @@
 var fs = require('fs');
 var should = require('chai').should(),
+    expect = require('chai').expect(),
     renderer = require('../index');
 
 describe("#renderSdfToSvg", function() {
@@ -10,5 +11,9 @@ describe("#renderSdfToSvg", function() {
     renderer.renderSdfToSvg(input, {}, function(svg) {
       svg.should.equal(expected);
     });
+  });
+
+  it("Successfully converts test.sdf to SVG", function() {
+    (function() { renderer.renderSdfToSvgFile('./test/examples/test.sdf', './test/examples/test.svg') }).should.not.throw();
   });
 });
