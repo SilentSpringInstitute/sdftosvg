@@ -1,6 +1,5 @@
 var fs = require('fs');
 var should = require('chai').should(),
-    expect = require('chai').expect(),
     renderer = require('../index');
 
 describe("#renderSdfToSvg", function() {
@@ -8,7 +7,8 @@ describe("#renderSdfToSvg", function() {
     var input = fs.readFileSync('./test/examples/pcb-138.sdf', 'utf-8');
     var expected = fs.readFileSync('./test/examples/pcb-138.svg', 'utf-8');
 
-    renderer.renderSdfToSvg(input, {}, function(svg) {
+    renderer.renderSdfToSvg(input, {}, function(err, svg) {
+      should.not.exist(err);
       svg.should.equal(expected);
     });
   });
@@ -17,8 +17,10 @@ describe("#renderSdfToSvg", function() {
 
 describe("#renderSdfToSvgFile", function() {
   it("Successfully converts test.sdf to SVG", function(done) {
-    renderer.renderSdfToSvgFile('./test/examples/test.sdf', './test/examples/test.svg', function() {
-      done();
+    renderer.renderSdfToSvgFile('./test/examples/test.sdf', './test/examples/test.svg', function(err, svg) {
+        if (err) throw err;
+        svg.should.be.a('string');
+        done();
     });
   });
 });

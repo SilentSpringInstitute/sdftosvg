@@ -7,42 +7,48 @@ var _ = require('lodash');
 var render = require('./src/renderer');
 var parseMol = require('./src/mol.js');
 
-module.exports.renderSdfToSvg = function(sdfRaw, options, callback) {
-  var sdf = parseSdf(sdfRaw);
-  var molecule = parseMol(sdf);
+module.exports.renderSdfToSvg = function(sdfRaw, options, cb) {
+  try {
+    var sdf = parseSdf(sdfRaw);
+    var molecule = parseMol(sdf);
+  } catch (e) {
+    return cb(e);
+  }
 
   jsdom.env({
     html: '<html><body></body></html>',
     features: { QuerySelector: true },
     done: function (errors, window) {
-      render(window, molecule, options)
+      if (errors) return cb(errors);
+      render(window, molecule, options, cb)
 
       svg = d3.select(window.document).select('body').html()
-      
-      if(_.isFunction(callback)) {
-        callback(svg);
+
+      if(_.isFunction(cb)) {
+        cb(null, svg);
       }
       else if(_.isFunction(options)) {
-        options(svg);
+        options(null, svg);
       }
     }
   });
 }
 
-module.exports.renderSdfToSvgFile = function(inputFile, outputFile, options, callback) {
+module.exports.renderSdfToSvgFile = function(inputFile, outputFile, options, cb) {
   fs.readFile(inputFile, 'utf-8', function(err, sdfRaw) {
-    if(err) throw err;
-    module.exports.renderSdfToSvg(sdfRaw, options, function(svg) {
+    if (err) return cb(err);
+    module.exports.renderSdfToSvg(sdfRaw, options, function(err, svg) {
+      if(err) return cb(err);
       fs.writeFile(outputFile, svg, function(err) {
-        if(err) throw err; 
+        if(err) return cb(err);
 
-        if(_.isFunction(callback)) {
-          callback(svg);
+        if(_.isFunction(cb)) {
+          return cb(null, svg);
         }
         else if(_.isFunction(options)) {
-          options(svg);
+          options(null, svg);
         }
       });
     });
-  }); 
+  });
 }
